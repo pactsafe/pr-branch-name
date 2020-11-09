@@ -4,7 +4,7 @@ inputs:
   repo-token:
     description: "GITHUB_TOKEN secret"
     required: true
-  limit:
+  length:
     description: "Maximum length of the outputted branch name"
     required: false
 runs:
