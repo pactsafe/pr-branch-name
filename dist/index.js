@@ -40,7 +40,7 @@ module.exports =
 /******/ 	// the startup function
 /******/ 	function startup() {
 /******/ 		// Load entry module and return exports
-/******/ 		return __webpack_require__(747);
+/******/ 		return __webpack_require__(598);
 /******/ 	};
 /******/
 /******/ 	// run startup
@@ -49,32 +49,16 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ 173:
-/***/ (function(module) {
-
-module.exports = eval("require")("@actions/github");
-
-
-/***/ }),
-
-/***/ 471:
-/***/ (function(module) {
-
-module.exports = eval("require")("@actions/core");
-
-
-/***/ }),
-
-/***/ 747:
+/***/ 598:
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
-const core = __webpack_require__(471);
-const github = __webpack_require__(173);
+const core = __webpack_require__(818);
+const github = __webpack_require__(775);
 
 async function run() {
   try {
     const token = core.getInput("repo-token");
-    const length = core.getInput("length");
+    const maxLength = core.getInput("max-length");
     const { owner, repo } = github.context.repo;
 
     const prNumber = getPrNumber();
@@ -91,8 +75,8 @@ async function run() {
       pull_number: prNumber
     });
 
-    if (length) {
-      core.setOutput("branch", response.data.head.ref.substring(0, length));
+    if (maxLength) {
+      core.setOutput("branch", response.data.head.ref.substring(0, Number(maxLength)));
     } else {
       core.setOutput("branch", response.data.head.ref);
     }
@@ -113,6 +97,22 @@ function getPrNumber() {
 }
 
 run();
+
+
+/***/ }),
+
+/***/ 775:
+/***/ (function(module) {
+
+module.exports = eval("require")("@actions/github");
+
+
+/***/ }),
+
+/***/ 818:
+/***/ (function(module) {
+
+module.exports = eval("require")("@actions/core");
 
 
 /***/ })
