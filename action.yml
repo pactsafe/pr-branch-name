@@ -4,6 +4,9 @@ inputs:
   repo-token:
     description: "GITHUB_TOKEN secret"
     required: true
+  limit:
+    description: "Maximum length of the outputted branch name"
+    required: false
 runs:
   using: "node12"
   main: "dist/index.js"

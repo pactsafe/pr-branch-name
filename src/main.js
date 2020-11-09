@@ -4,6 +4,7 @@ const github = require("@actions/github");
 async function run() {
   try {
     const token = core.getInput("repo-token");
+    const length = core.getInput("length");
     const { owner, repo } = github.context.repo;
 
     const prNumber = getPrNumber();
@@ -20,7 +21,11 @@ async function run() {
       pull_number: prNumber
     });
 
-    core.setOutput("branch", response.data.head.ref);
+    if (length) {
+      core.setOutput("branch", response.data.head.ref.substring(0, length));
+    } else {
+      core.setOutput("branch", response.data.head.ref);
+    }
   } catch (error) {
     core.error(error);
     core.setFailed(error.message);
