@@ -4,7 +4,7 @@ const github = require("@actions/github");
 async function run() {
   try {
     const token = core.getInput("repo-token");
-    const length = core.getInput("length");
+    const maxLength = core.getInput("max-length");
     const { owner, repo } = github.context.repo;
 
     const prNumber = getPrNumber();
@@ -21,8 +21,8 @@ async function run() {
       pull_number: prNumber
     });
 
-    if (length) {
-      core.setOutput("branch", response.data.head.ref.substring(0, length));
+    if (maxLength) {
+      core.setOutput("branch", response.data.head.ref.substring(0, Number(maxLength)));
     } else {
       core.setOutput("branch", response.data.head.ref);
     }

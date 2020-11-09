@@ -4,9 +4,10 @@ inputs:
   repo-token:
     description: "GITHUB_TOKEN secret"
     required: true
-  length:
+  max-length:
     description: "Maximum length of the outputted branch name"
     required: false
+    default: '25'
 runs:
   using: "node12"
   main: "dist/index.js"

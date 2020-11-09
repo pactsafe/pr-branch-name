@@ -8,13 +8,13 @@ Originally sourced from [@mdecoleman/pr-branch-name](https://github.com/mdecolem
 
 ```yaml
 - uses: pactsafe/pr-branch-name@1.0.0
-  id: vars
+  id: branch-name
   with:
-    length: 25 # This is the maximum length of the branch name
+    max-length: 25 # This is the maximum length of the branch name
     repo-token: ${{ secrets.GITHUB_TOKEN }}
-- run: echo ${{ steps.vars.outputs.branch }}
+- run: echo ${{ steps.branch-name.outputs.branch }}
 ```
 
-# License
+## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
