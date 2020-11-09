@@ -10,7 +10,7 @@ Originally sourced from [@mdecoleman/pr-branch-name](https://github.com/mdecolem
 - uses: pactsafe/pr-branch-name@1.0.0
   id: vars
   with:
-    limit: 25 # This is the maximum length of the branch name
+    length: 25 # This is the maximum length of the branch name
     repo-token: ${{ secrets.GITHUB_TOKEN }}
 - run: echo ${{ steps.vars.outputs.branch }}
 ```
